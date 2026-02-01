@@ -1,4 +1,4 @@
-# MongoChat
+# PUBLIC THREAD : https://publicthread.onrender.com/chats
 
 MongoChat is a simple chat application built using Node.js, Express, MongoDB, and EJS. It allows users to create, read, update, and delete chat messages.
 
