@@ -1,6 +1,6 @@
 # PUBLIC THREAD : https://publicthread.onrender.com/chats
 
-MongoChat is a simple chat application built using Node.js, Express, MongoDB, and EJS. It allows users to create, read, update, and delete chat messages.
+PUBLIC THREAD is a simple chat application built using Node.js, Express, MongoDB, and EJS. It allows users to create, read, update, and delete chat messages.
 
 ## Features
 
@@ -12,7 +12,7 @@ MongoChat is a simple chat application built using Node.js, Express, MongoDB, an
 ## Folder Structure
 
 ```
-MongoChat/
+PUBLIC THREAD/
 ├── models/
 │   └── chat.js         # Mongoose schema for chat messages
 ├── public/             # Static assets (CSS, JS, images, etc.)
