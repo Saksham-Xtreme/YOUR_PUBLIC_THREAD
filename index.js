@@ -14,6 +14,8 @@ app.use(express.urlencoded({ extended: true }));
 app.use(methodOverride("_method"));
 
 async function main() {
+    console.log("MONGO_URL exists:", !!process.env.MONGO_URL);
+
     await mongoose.connect(process.env.MONGO_URL);
     console.log("MongoDB connected");
 }
