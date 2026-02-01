@@ -1,0 +1,263 @@
+:root {
+    /* --- The Void Palette --- */
+    --bg-deep: #030014;
+    --bg-glass: rgba(17, 25, 40, 0.75);
+    --bg-message: rgba(255, 255, 255, 0.03);
+
+    /* --- Accents --- */
+    --accent-primary: #8b5cf6; /* Violet */
+    --accent-secondary: #06b6d4; /* Cyan */
+    --accent-btn: linear-gradient(135deg, #6366f1, #8b5cf6); /* Indigo to Purple */
+    
+    /* --- Lighting --- */
+    --border-light: rgba(255, 255, 255, 0.1);
+    --shadow-ambient: 0 0 80px -20px rgba(139, 92, 246, 0.15);
+    --shadow-depth: 0 20px 40px -10px rgba(0, 0, 0, 0.6);
+    --shadow-glow-btn: 0 0 20px rgba(139, 92, 246, 0.4);
+
+    /* --- Animation --- */
+    --ease-elastic: cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: var(--bg-deep);
+    background-image: 
+        radial-gradient(circle at 50% 0%, #1e1b4b 0%, transparent 70%),
+        linear-gradient(rgba(255, 255, 255, 0.02) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
+    background-size: 100% 100%, 40px 40px, 40px 40px;
+    color: #e2e8f0;
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+    min-height: 100vh;
+    padding: 60px 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* --- Title --- */
+h1 {
+    font-size: 3rem;
+    font-weight: 800;
+    letter-spacing: -0.04em;
+    margin-bottom: 30px;
+    text-align: center;
+    background: linear-gradient(to bottom right, #ffffff 20%, #94a3b8 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    filter: drop-shadow(0 0 20px rgba(255, 255, 255, 0.15));
+}
+
+/* --- "New Chat" Button & Form --- */
+form {
+    margin-bottom: 50px;
+    display: flex;
+    justify-content: center;
+}
+
+.newChat {
+    background: var(--accent-btn);
+    color: white;
+    border: none;
+    padding: 14px 40px;
+    font-size: 1rem;
+    font-weight: 700;
+    border-radius: 50px; /* Pill shape */
+    cursor: pointer;
+    box-shadow: var(--shadow-glow-btn);
+    transition: all 0.3s var(--ease-elastic);
+    border: 1px solid rgba(255,255,255,0.2);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.newChat:hover {
+    transform: translateY(-4px) scale(1.05);
+    box-shadow: 0 0 40px rgba(139, 92, 246, 0.6);
+    background: linear-gradient(135deg, #8b5cf6, #d946ef);
+}
+
+.newChat:active {
+    transform: scale(0.95);
+}
+
+/* --- The Chat Card (Repeated) --- */
+.Chat {
+    width: 100%;
+    max-width: 700px;
+    position: relative;
+    padding: 28px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-bottom: 30px; /* Spacing between chats in the loop */
+    
+    /* Glassmorphism */
+    background: var(--bg-glass);
+    backdrop-filter: blur(24px) saturate(180%);
+    -webkit-backdrop-filter: blur(24px) saturate(180%);
+    
+    border-radius: 24px;
+    border: 1px solid var(--border-light);
+    box-shadow: var(--shadow-depth), var(--shadow-ambient);
+    transition: transform 0.4s var(--ease-elastic);
+    overflow: hidden;
+}
+
+/* Hover Levitation */
+.Chat:hover {
+    transform: translateY(-5px) scale(1.01);
+    border-color: rgba(255, 255, 255, 0.3);
+}
+
+/* Top Shimmer Line */
+.Chat::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, #60a5fa, transparent);
+    opacity: 0.5;
+}
+
+/* --- Sender Info --- */
+.from {
+    font-size: 0.75rem;
+    font-weight: 700;
+    color: var(--accent-secondary);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    margin-left: 4px;
+    display: flex;
+    align-items: center;
+}
+
+.from::before {
+    content: '//';
+    margin-right: 8px;
+    color: var(--accent-primary);
+}
+
+/* --- Message Content --- */
+.msg {
+    background: var(--bg-message);
+    padding: 18px 24px;
+    border-radius: 18px;
+    border-top-left-radius: 4px;
+    
+    font-size: 1.05rem;
+    line-height: 1.6;
+    color: #f1f5f9;
+    
+    /* Inner Light */
+    box-shadow: 
+        inset 0 1px 0 rgba(255, 255, 255, 0.08), 
+        0 4px 10px rgba(0, 0, 0, 0.2);
+    
+    border: 1px solid rgba(255, 255, 255, 0.03);
+    animation: warpIn 0.5s var(--ease-elastic) both;
+}
+
+/* --- Receiver Info --- */
+.recived {
+    font-family: 'Courier New', monospace;
+    font-size: 0.7rem;
+    color: #64748b;
+    text-align: right;
+    margin-top: 4px;
+    opacity: 0.7;
+}
+
+/* --- Divider (Hide standard HR, rely on card spacing) --- */
+hr {
+    border: 0;
+    height: 0;
+    margin: 0;
+    /* We use margin-bottom on .Chat instead for better layout */
+}
+
+/* --- Add these new styles to your existing CSS --- */
+
+/* 1. Footer Container (Holds Edit button & Date) */
+.chat-footer {
+    display: flex;
+    justify-content: space-between; /* Pushes Edit to left, Date to right */
+    align-items: flex-end;
+    margin-top: 12px;
+    padding-top: 10px;
+    border-top: 1px solid rgba(255, 255, 255, 0.05); /* Subtle separator line */
+}
+
+/* 2. The Edit Button (Ghost Style) */
+.edit-btn {
+    background: transparent;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    color: #94a3b8; /* Muted text */
+    padding: 6px 16px;
+    font-size: 0.8rem;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-family: inherit;
+    letter-spacing: 0.5px;
+}
+
+.edit-btn:hover {
+    background: rgba(255, 255, 255, 0.1);
+    color: var(--accent-primary); /* Turns Violet on hover */
+    border-color: var(--accent-primary);
+    box-shadow: 0 0 15px rgba(139, 92, 246, 0.3); /* Glowing effect */
+    transform: translateY(-2px);
+}
+
+/* 3. Meta Info (Received + Date) */
+.meta-info {
+    text-align: right;
+}
+
+.recived {
+    font-family: 'Courier New', monospace;
+    font-size: 0.75rem;
+    color: #cbd5e1;
+    margin-bottom: 2px;
+}
+
+.date {
+    font-size: 0.65rem;
+    color: var(--accent-secondary); /* Cyan color */
+    opacity: 0.7;
+    letter-spacing: 0.5px;
+    font-family: 'Inter', sans-serif;
+}
+
+/* State 1: Hidden (Default) */
+.Chat {
+    opacity: 0;
+    transform: translateY(50px) scale(0.95); /* Pushed down & small */
+    transition: all 0.6s cubic-bezier(0.2, 0.8, 0.2, 1); /* Smooth physics */
+}
+
+/* State 2: Visible (Added by home.js) */
+.Chat.show {
+    opacity: 1;
+    transform: translateY(0) scale(1); /* Original position & size */
+}
+
+/* --- Animation --- */
+@keyframes warpIn {
+    0% { opacity: 0; transform: translateY(20px); filter: blur(5px); }
+    100% { opacity: 1; transform: translateY(0); filter: blur(0); }
+}
+
+/* --- Mobile --- */
+@media (max-width: 600px) {
+    h1 { font-size: 2rem; }
+    .Chat { padding: 20px; border-radius: 20px; }
+    .newChat { width: 100%; }
+}

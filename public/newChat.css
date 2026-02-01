@@ -1,0 +1,174 @@
+:root {
+    /* --- The Void Palette --- */
+    --bg-deep: #030014;
+    --bg-glass: rgba(17, 25, 40, 0.75);
+    --bg-input: rgba(0, 0, 0, 0.3); /* Darker slot for inputs */
+    
+    /* --- Accents --- */
+    --accent-primary: #8b5cf6;
+    --accent-glow: #6366f1;
+    --accent-btn: linear-gradient(135deg, #6366f1, #a855f7);
+    
+    /* --- Text --- */
+    --text-main: #f1f5f9;
+    --text-muted: #94a3b8;
+    
+    /* --- Physics --- */
+    --ease-out: cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: var(--bg-deep);
+    /* Matching the main page grid background */
+    background-image: 
+        radial-gradient(circle at 50% 0%, #1e1b4b 0%, transparent 80%),
+        linear-gradient(rgba(255, 255, 255, 0.02) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
+    background-size: 100% 100%, 40px 40px, 40px 40px;
+    
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+    color: var(--text-main);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+}
+
+/* --- The Glass Card Container --- */
+form {
+    width: 100%;
+    max-width: 500px;
+    background: var(--bg-glass);
+    backdrop-filter: blur(24px);
+    -webkit-backdrop-filter: blur(24px);
+    
+    padding: 40px;
+    border-radius: 24px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    
+    box-shadow: 
+        0 25px 50px -12px rgba(0, 0, 0, 0.5), /* Depth */
+        0 0 40px -10px rgba(139, 92, 246, 0.1); /* Glow */
+        
+    animation: slideUp 0.5s var(--ease-out) forwards;
+}
+
+/* --- Typography --- */
+h3 {
+    text-align: center;
+    font-size: 2rem;
+    font-weight: 800;
+    margin-bottom: 10px;
+    letter-spacing: -0.5px;
+    
+    /* Gradient Text */
+    background: linear-gradient(to right, #fff, #94a3b8);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    filter: drop-shadow(0 0 15px rgba(255,255,255,0.1));
+}
+
+/* --- Input Fields & Textarea --- */
+input, textarea {
+    background: var(--bg-input);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 12px;
+    padding: 16px 20px;
+    
+    color: var(--text-main);
+    font-size: 1rem;
+    font-family: inherit;
+    
+    transition: all 0.3s ease;
+    outline: none;
+    
+    /* Inner shadow for depth */
+    box-shadow: inset 0 2px 4px rgba(0,0,0,0.3);
+}
+
+textarea {
+    resize: vertical; /* Allow resizing only vertically */
+    min-height: 120px;
+    line-height: 1.5;
+}
+
+/* Placeholder Styling */
+::placeholder {
+    color: rgba(255, 255, 255, 0.3);
+    font-weight: 400;
+}
+
+/* --- Focus State (The Neon Glow) --- */
+input:focus, textarea:focus {
+    background: rgba(255, 255, 255, 0.03);
+    border-color: var(--accent-glow);
+    box-shadow: 
+        0 0 0 4px rgba(99, 102, 241, 0.15),
+        inset 0 1px 0 rgba(255,255,255,0.1);
+    transform: translateY(-2px);
+}
+
+/* --- Submit Button --- */
+.submit {
+    margin-top: 10px;
+    background: var(--accent-btn);
+    color: white;
+    font-weight: 700;
+    font-size: 1rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    
+    border: none;
+    padding: 16px;
+    border-radius: 12px;
+    cursor: pointer;
+    
+    box-shadow: 0 4px 15px rgba(139, 92, 246, 0.4);
+    transition: all 0.3s var(--ease-out);
+    border: 1px solid rgba(255,255,255,0.2);
+}
+
+.submit:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(139, 92, 246, 0.6);
+    filter: brightness(1.1);
+}
+
+.submit:active {
+    transform: scale(0.98);
+}
+
+/* --- Animation --- */
+@keyframes slideUp {
+    from { 
+        opacity: 0; 
+        transform: translateY(30px) scale(0.95); 
+    }
+    to { 
+        opacity: 1; 
+        transform: translateY(0) scale(1); 
+    }
+}
+
+/* --- Mobile Tweak --- */
+@media (max-width: 600px) {
+    form {
+        padding: 25px;
+        width: 100%;
+    }
+    h3 {
+        font-size: 1.8rem;
+    }
+}

@@ -1,0 +1,215 @@
+:root {
+    /* --- The Aurora Palette --- */
+    --bg-deep: #030014;
+    --bg-glass: rgba(17, 25, 40, 0.75);
+    --bg-input: rgba(0, 0, 0, 0.4);
+    
+    /* --- Accents --- */
+    --accent-primary: #8b5cf6; /* Violet */
+    --accent-cyan: #06b6d4;   /* Cyan */
+    --accent-btn: linear-gradient(135deg, #10b981, #059669); /* Emerald Green for "Save" */
+    
+    /* --- Text --- */
+    --text-main: #f1f5f9;
+    --text-muted: #94a3b8;
+    
+    /* --- Effects --- */
+    --ease-out: cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+    background-color: var(--bg-deep);
+    /* Standard Aurora Grid Background */
+    background-image: 
+        radial-gradient(circle at 50% 0%, #1e1b4b 0%, transparent 80%),
+        linear-gradient(rgba(255, 255, 255, 0.02) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
+    background-size: 100% 100%, 40px 40px, 40px 40px;
+    
+    color: var(--text-main);
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+/* --- The Main Card --- */
+.glass-container {
+    width: 100%;
+    max-width: 600px;
+    background: var(--bg-glass);
+    backdrop-filter: blur(24px);
+    -webkit-backdrop-filter: blur(24px);
+    
+    padding: 40px;
+    border-radius: 24px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    
+    box-shadow: 0 40px 80px -12px rgba(0, 0, 0, 0.8);
+    animation: scaleIn 0.4s var(--ease-out) both;
+}
+
+/* --- Typography --- */
+h3 {
+    font-size: 1.8rem;
+    font-weight: 800;
+    margin-bottom: 5px;
+    color: white;
+}
+
+/* Style the ID to look like a code snippet */
+.id-tag {
+    font-family: 'Courier New', monospace;
+    font-size: 1rem;
+    background: rgba(255,255,255,0.1);
+    padding: 4px 8px;
+    border-radius: 6px;
+    color: var(--text-muted);
+    vertical-align: middle;
+}
+
+/* "From -> To" Metadata line */
+.from-to {
+    font-family: 'Courier New', monospace;
+    color: var(--accent-cyan);
+    font-size: 0.85rem;
+    margin-bottom: 20px;
+    opacity: 0.9;
+    letter-spacing: 0.5px;
+}
+
+/* --- Form Elements --- */
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+textarea {
+    width: 100%;
+    min-height: 180px;
+    background: var(--bg-input);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 16px;
+    padding: 20px;
+    
+    color: var(--text-main);
+    font-size: 1.1rem;
+    font-family: inherit;
+    line-height: 1.6;
+    resize: vertical;
+    outline: none;
+    transition: all 0.3s ease;
+    
+    box-shadow: inset 0 2px 10px rgba(0,0,0,0.5);
+}
+
+textarea:focus {
+    border-color: var(--accent-primary);
+    background: rgba(0, 0, 0, 0.6);
+    box-shadow: 
+        0 0 0 4px rgba(139, 92, 246, 0.15),
+        inset 0 2px 10px rgba(0,0,0,0.5);
+}
+
+/* --- Save Button (Green Gradient) --- */
+.save-btn {
+    background: var(--accent-btn);
+    color: white;
+    font-weight: 700;
+    font-size: 1rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    
+    border: none;
+    padding: 16px;
+    border-radius: 12px;
+    cursor: pointer;
+    border: 1px solid rgba(255,255,255,0.2);
+    
+    box-shadow: 0 4px 20px rgba(16, 185, 129, 0.4); /* Green Glow */
+    transition: all 0.3s var(--ease-out);
+}
+
+.save-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 30px rgba(16, 185, 129, 0.6);
+}
+
+.save-btn:active {
+    transform: scale(0.98);
+}
+
+/* --- Animation --- */
+@keyframes scaleIn {
+    from { opacity: 0; transform: scale(0.95) translateY(20px); }
+    to { opacity: 1; transform: scale(1) translateY(0); }
+}
+
+/* --- ANIMATION KEYFRAMES --- */
+@keyframes auroraMove {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+@keyframes gridMove {
+    0% { transform: translateY(0); }
+    100% { transform: translateY(40px); }
+}
+
+/* --- THE EXCITING BACKGROUND --- */
+body {
+    /* 1. Base Dark Color */
+    background-color: #020617; 
+    
+    /* 2. The Animated Gradient (The "Aurora") */
+    background-image: 
+        /* The Moving Grid (Top Layer) */
+        linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px), 
+        linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+        /* The Deep Glow (Bottom Layer) */
+        radial-gradient(at 0% 0%, hsla(253,16%,7%,1) 0, transparent 50%), 
+        radial-gradient(at 50% 0%, hsla(225,39%,30%,1) 0, transparent 50%), 
+        radial-gradient(at 100% 0%, hsla(339,49%,30%,1) 0, transparent 50%);
+        
+    /* Make the gradient huge so it can move smoothly */
+    background-size: 40px 40px, 40px 40px, 200% 200%, 200% 200%, 200% 200%;
+    
+    /* Animation settings */
+    animation: auroraMove 15s ease infinite;
+
+    /* Layout Essentials */
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+    color: #e2e8f0;
+    min-height: 100vh;
+    padding: 60px 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    overflow-x: hidden;
+    position: relative;
+}
+
+/* Optional: A floating orb for extra "pop" behind the glass */
+body::before {
+    content: '';
+    position: fixed;
+    top: 20%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 600px;
+    height: 600px;
+    background: radial-gradient(circle, rgba(139, 92, 246, 0.15) 0%, transparent 70%);
+    z-index: -1;
+    pointer-events: none;
+    filter: blur(50px);
+}
