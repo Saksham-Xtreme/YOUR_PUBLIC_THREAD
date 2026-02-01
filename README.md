@@ -33,7 +33,7 @@ MongoChat/
 
 1. Clone the repository:
    ```bash
-   git clone <repository-url>
+   git clone https://github.com/Saksham-Xtreme/YOUR_PUBLIC_THREAD
    cd MongoChat
    ```
 
